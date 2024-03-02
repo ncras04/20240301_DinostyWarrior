@@ -13,10 +13,13 @@ Player::Player(int _floorLevel)
 
     m_rigidbody->SetMass(1);
     m_rigidbody->SetFloorLevel(_floorLevel);
-    m_rigidbody->SetDrag(0);
+    m_rigidbody->SetDrag(0.1f);
+
+    m_Collider = new BoxCollision(this, "Player", 0, 0, 39, 45);
 
     m_components.push_back(m_rigidbody);
     m_components.push_back(new ImageRenderComponent(this, 39, 45, dinoSkateImage));
+    m_components.push_back(m_Collider);
 }
 
 bool Player::Update(float _deltaTime) noexcept

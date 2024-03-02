@@ -7,7 +7,7 @@
 
 MainScene::MainScene()
 {
-    Player* player = new Player(70);
+    Player* player = new Player(10);
     player->SetPosX(20);
     m_objects.push_back(player);
     Ground* ground = new Ground(50, 20);
@@ -16,7 +16,7 @@ MainScene::MainScene()
 
     Obstacle* obstacle = new Obstacle(10);
     obstacle->SetPosX(M5Cardputer.Display.width());
-    obstacle->SetPosY(M5Cardputer.Display.height() * 0.5f);
+    obstacle->SetPosY(M5Cardputer.Display.height() * 0.2f);
     m_objects.push_back(obstacle);
     
     // AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);

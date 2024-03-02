@@ -20,12 +20,13 @@ void ImageRenderComponent::Update(float _deltaTime) noexcept
 
 void ImageRenderComponent::Render() noexcept
 {
-    int posX = (int)(m_owner->GetPosX() - m_imageWidth * 0.5f);
-    int posY = (int)(m_owner->GetPosY() - m_imageHeight * 0.5f);
+    int posX = (int)(m_owner->GetPosX());
+    int posY = (int)(m_owner->GetPosY() + m_imageHeight);
 
     // posX = ImageRenderComponent::s_ScreenWidth - posX;
     posY = ImageRenderComponent::s_ScreenHeight - posY;
 
     M5Cardputer.Display.pushImage(posX, posY,  m_imageWidth, m_imageHeight, m_data);
+    M5Cardputer.Display.drawCircle(m_owner->GetPosX(), ImageRenderComponent::s_ScreenHeight - m_owner->GetPosY(), 5, RED);
 }
 

@@ -1,6 +1,7 @@
 #ifndef LIBRARY_GAMEOBJECT_H
 #define LIBRARY_GAMEOBJECT_H
 #include <vector>
+#include "Components/BoxCollision.h"
 
 // Forward declarations
 class AComponent;
@@ -17,7 +18,8 @@ class AGameObject
         inline float GetPosY() { return m_posY; }
         inline void SetPosX(float _posX) {m_posX = _posX; };
         inline void SetPosY(float _posY) {m_posY = _posY; };
-
+    public:
+        BoxCollision* m_Collider = nullptr;
     protected:
         std::vector<AComponent*> m_components = std::vector<AComponent*>();
 

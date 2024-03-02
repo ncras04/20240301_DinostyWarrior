@@ -4,6 +4,7 @@
 #include "GameObjects/Player.h"
 #include "GameObjects/Ground.h"
 #include "GameObjects/Obstacle.h"
+#include "GameObjects/Score.h"
 
 MainScene::MainScene()
 {
@@ -24,6 +25,7 @@ MainScene::MainScene()
     obstacle->SetPosY(M5Cardputer.Display.height() * 0.2f);
     m_objects.push_back(obstacle);
     
-    AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);
-    AudioManager::Get()->PlayRepeatOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
+    m_objects.push_back(new Score(1.0f));
+    // AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);
+    // AudioManager::Get()->PlayRepeatOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
 }

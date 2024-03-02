@@ -43,9 +43,7 @@ std::string Scene::Update(float _deltaTime) noexcept
                     }
             }
         }
-        
     }
-    
 
     for (AGameObject* go : toRemove)
     {
@@ -61,15 +59,6 @@ std::string Scene::Update(float _deltaTime) noexcept
     {
         go->Render();
     }
-
-    static float points = 0;
-    float pointsIncreasePerSecond = 1;
-
-    points += pointsIncreasePerSecond * _deltaTime;
-
-    M5Cardputer.Display.setTextColor(BLACK);
-    M5Cardputer.Display.setCursor(160,10, 2);
-    M5Cardputer.Display.print("brojac: " + String((int)points));
 
     return returnValue;
 }

@@ -21,7 +21,7 @@ void ImageRenderComponent::Update(float _deltaTime) noexcept
 void ImageRenderComponent::Render() noexcept
 {
     int posX = (int)(m_owner->GetPosX() - m_imageWidth * 0.5f);
-    int posY = (int)(m_owner->GetPosY() - m_imageWidth * 0.5f);
+    int posY = (int)(m_owner->GetPosY() - m_imageHeight * 0.5f);
 
     // posX = ImageRenderComponent::s_ScreenWidth - posX;
     posY = ImageRenderComponent::s_ScreenHeight - posY;

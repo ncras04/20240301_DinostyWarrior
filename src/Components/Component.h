@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef LIBRARY_COMPONENT_H
+#define LIBRARY_COMPONENT_H
 class AGameObject;
 
 class AComponent
@@ -13,3 +13,4 @@ class AComponent
     protected:
         AGameObject* m_owner = nullptr;
 };
+#endif // LIBRARY_COMPONENT_H

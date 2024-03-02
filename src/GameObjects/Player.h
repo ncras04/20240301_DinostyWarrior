@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef LIBRARY_PLAYER_H
+#define LIBRARY_PLAYER_H
 #include "GameObject.h"
 
 // forward declarations
@@ -8,7 +8,7 @@ class Rigidbody;
 class Player : public AGameObject
 {
     public:
-        Player();
+        Player(int _floorLevel);
 
     public:
         virtual bool Update(float _deltaTime) noexcept override;
@@ -16,3 +16,4 @@ class Player : public AGameObject
     protected:
         Rigidbody* m_rigidbody = nullptr;
 };
+#endif // LIBRARY_PLAYER_H

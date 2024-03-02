@@ -7,12 +7,12 @@
 #include "Images/DinoOllieImage.h"
 #include "Images/BirdImage.h"
 
-Player::Player()
+Player::Player(int _floorLevel)
 {
     m_rigidbody = new Rigidbody(this);
 
     m_rigidbody->SetMass(1);
-    m_rigidbody->SetFloorLevel(100);
+    m_rigidbody->SetFloorLevel(_floorLevel);
     m_rigidbody->SetDrag(0);
 
     m_components.push_back(m_rigidbody);

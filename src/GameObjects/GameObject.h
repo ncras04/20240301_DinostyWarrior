@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LIBRARY_GAMEOBJECT_H
+#define LIBRARY_GAMEOBJECT_H
 #include <vector>
 
 // Forward declarations
@@ -24,3 +25,4 @@ class AGameObject
         float m_posX = 0;
         float m_posY = 0;
 };
+#endif // LIBRARY_GAMEOBJECT_H

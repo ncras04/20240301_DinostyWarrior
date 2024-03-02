@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef LIBRARY_OBSTACLE_H
+#define LIBRARY_OBSTACLE_H
 #include "GameObject.h"
 
 class Obstacle: public AGameObject
@@ -13,3 +13,4 @@ class Obstacle: public AGameObject
     protected:
         int m_movementSpeed = 0;
 };
+#endif // LIBRARY_OBSTACLE_H

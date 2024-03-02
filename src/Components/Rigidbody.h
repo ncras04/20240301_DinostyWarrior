@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef LIBRARY_RIGIDBODY_H
+#define LIBRARY_RIGIDBODY_H
 #include "Component.h"
 
 class AGameObject;
@@ -32,3 +32,4 @@ class Rigidbody : public AComponent
         int m_mass = 1;
         float m_drag = 1;
 };
+#endif // LIBRARY_RIGIDBODY_H

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LIBRARY_GROUND_H
+#define LIBRARY_GROUND_H
 
 #include <list>
 
@@ -21,3 +22,4 @@ class Ground : public AGameObject
         float m_currentLocation = 0;
         std::list<float> m_points = std::list<float>();
 };  
+#endif // LIBRARY_GROUND_H

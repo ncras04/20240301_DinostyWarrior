@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LIBRARY_IMAGERENDERCOMPONENT_H
+#define LIBRARY_IMAGERENDERCOMPONENT_H
 #include "M5Cardputer.h"
 #include "Component.h"
 
@@ -22,3 +23,4 @@ class ImageRenderComponent : public AComponent
         int m_imageHeight = 0;
         const unsigned short* m_data = nullptr;
 };
+#endif // LIBRARY_IMAGERENDERCOMPONENT_H

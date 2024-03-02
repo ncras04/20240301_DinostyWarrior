@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LIBRARY_AUDIOMANAGER_H
+#define LIBRARY_AUDIOMANAGER_H
 #include "M5Cardputer.h"
 
 enum class ESoundTypes : unsigned char 
@@ -22,3 +23,4 @@ class AudioManager
     private:
         static AudioManager* s_instance;
 };
+#endif // LIBRARY_AUDIOMANAGER_H

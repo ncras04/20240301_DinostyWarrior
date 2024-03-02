@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LIBRARY_SCENE_H
+#define LIBRARY_SCENE_H
 #include <vector>
 #include <string>
 
@@ -14,3 +15,4 @@ class Scene
     protected:
         std::vector<AGameObject*> m_objects = std::vector<AGameObject*>();
 };
+#endif // LIBRARY_SCENE_H

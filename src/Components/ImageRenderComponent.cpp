@@ -17,8 +17,8 @@ void ImageRenderComponent::Update(float _deltaTime) noexcept
 
 void ImageRenderComponent::Render() noexcept
 {
-    int posX = this->m_owner->GetPosX() - this->m_imageWidth * 0.5f;
-    int posY = this->m_owner->GetPosY() - this->m_imageWidth * 0.5f;
+    int posX = (int)(this->m_owner->GetPosX() - this->m_imageWidth * 0.5f);
+    int posY = (int)(this->m_owner->GetPosY() - this->m_imageWidth * 0.5f);
     M5Cardputer.Display.pushImage(posX, posY,  this->m_imageWidth, this->m_imageHeight, this->m_data);
 }
 

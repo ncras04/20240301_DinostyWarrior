@@ -15,7 +15,11 @@ SoundObject::SoundObject(int _frequency)
 
 void SoundObject::Update(float _deltaTime)
 {
-  int newPos = (this->GetPosX() + (int)(50 * _deltaTime)) % M5Cardputer.Display.width();
+  float newPos = this->GetPosX() + 50 * _deltaTime;
+  if (newPos > M5Cardputer.Display.width())
+  {
+    newPos = 0;
+  }
   this->SetPosX(newPos);
 
   if (M5Cardputer.Keyboard.isKeyPressed('a'))
@@ -30,6 +34,9 @@ void SoundObject::Update(float _deltaTime)
     AudioManager::Get()->PlayOneshot(background_sound_file,  sizeof(background_sound_file), ESoundTypes::AMBIENT);
     // M5Cardputer.Speaker.playWav(background_wav_with_header, sizeof(background_wav_with_header), 1, 1, false);
   }
+  M5Cardputer.Display.drawString(String(millis()) + "|" + String(_deltaTime),
+                                   M5Cardputer.Display.width() / 2,
+                                   M5Cardputer.Display.height() / 2);
   AGameObject::Update(_deltaTime);
 }
 
@@ -37,9 +44,4 @@ void SoundObject::Update(float _deltaTime)
 void SoundObject::Render()
 {
   AGameObject::Render();
-
-  m5::rtc_time_t time = M5.Rtc.getTime();
-  M5Cardputer.Display.drawString(String(time.hours) + "|" + String(time.minutes) + "|" + String(time.seconds),
-                                   M5Cardputer.Display.width() / 2,
-                                   M5Cardputer.Display.height() / 2);
 }

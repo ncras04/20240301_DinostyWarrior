@@ -9,12 +9,13 @@ AGameObject::~AGameObject()
     }
 }
 
-void AGameObject::Update(float _deltaTime)
+bool AGameObject::Update(float _deltaTime)
 {
     for (AComponent* component : m_components)
     {
         component->Update(_deltaTime);
     }
+    return true;
 }
 
 void AGameObject::Render()

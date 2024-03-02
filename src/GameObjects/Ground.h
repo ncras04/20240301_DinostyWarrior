@@ -10,7 +10,7 @@ class Ground : public AGameObject
         Ground(int _scrollSpeed, int _spacePerPoint);
 
     public:
-        virtual void Update(float _deltaTime) noexcept override;
+        virtual bool Update(float _deltaTime) noexcept override;
         virtual void Render() noexcept override;
     protected:
         float GenerateNextPoint(float _previousHeight);

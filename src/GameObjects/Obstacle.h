@@ -2,17 +2,14 @@
 
 #include "GameObject.h"
 
-// forward declarations
-class Rigidbody;
-
-class Player : public AGameObject
+class Obstacle: public AGameObject
 {
     public:
-        Player();
+        Obstacle(int _movementSpeed);
 
     public:
         virtual bool Update(float _deltaTime) noexcept override;
 
     protected:
-        Rigidbody* m_rigidbody = nullptr;
+        int m_movementSpeed = 0;
 };

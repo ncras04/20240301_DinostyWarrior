@@ -18,7 +18,7 @@ Ground::Ground(int _scrollSpeed, int _spacePerPoint)
     }
 }
 
-void Ground::Update(float _deltaTime) noexcept
+bool Ground::Update(float _deltaTime) noexcept
 {
     m_currentLocation -= m_scrollSpeed * _deltaTime;
     if (m_currentLocation < -2 * m_spacePerPoint)
@@ -28,6 +28,9 @@ void Ground::Update(float _deltaTime) noexcept
         float previous = m_points.back();
         m_points.push_back(GenerateNextPoint(previous));
     }
+
+    AGameObject::Update(_deltaTime);
+    return true;
 }
 
 void Ground::Render() noexcept
@@ -45,10 +48,11 @@ void Ground::Render() noexcept
         renderPosY = ImageRenderComponent::s_ScreenHeight - renderPosY;
         previousRenderPosY = ImageRenderComponent::s_ScreenHeight - previousRenderPosY;
 
-        M5Cardputer.Display.drawLine(previousX, previousRenderPosY, m_currentLocation + index * m_spacePerPoint, renderPosY, WHITE);
+        M5Cardputer.Display.drawLine(previousX, previousRenderPosY, m_currentLocation + index * m_spacePerPoint, renderPosY, BLACK);
         previousX = m_currentLocation + index * m_spacePerPoint;
         previousY = point;
     }
+    AGameObject::Render();
 }
 
 float Ground::GenerateNextPoint(float _previous)

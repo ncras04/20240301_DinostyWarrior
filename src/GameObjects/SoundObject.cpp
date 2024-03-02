@@ -1,6 +1,6 @@
 #include "M5Cardputer.h"
 #include "SoundObject.h"
-#include "Images/DinoImage.h"
+#include "Images/DinoSkate.h"
 #include "Audio/Sounds.h"
 #include "Audio/AudioManager.h"
 #include "Components/ImageRenderComponent.h"
@@ -10,10 +10,10 @@ SoundObject::SoundObject(int _frequency)
   frequency = _frequency;
   SetPosY(M5Cardputer.Display.height() * 0.5f);
 
-  m_components.push_back(new ImageRenderComponent(this, 56, 61, dinoImage));
+  m_components.push_back(new ImageRenderComponent(this, 56, 61, dinoSkateImage));
 }
 
-void SoundObject::Update(float _deltaTime)
+bool SoundObject::Update(float _deltaTime)
 {
   float newPos = GetPosX() + 50 * _deltaTime;
   if (newPos > M5Cardputer.Display.width())
@@ -38,6 +38,7 @@ void SoundObject::Update(float _deltaTime)
                                    M5Cardputer.Display.width() / 2,
                                    M5Cardputer.Display.height() / 2);
   AGameObject::Update(_deltaTime);
+  return true;
 }
 
 

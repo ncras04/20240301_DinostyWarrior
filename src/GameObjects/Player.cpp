@@ -3,7 +3,9 @@
 #include "Player.h"
 #include "Components/ImageRenderComponent.h"
 #include "Components/Rigidbody.h"
-#include "Images/DinoImage.h"
+#include "Images/DinoSkateImage.h"
+#include "Images/DinoOllieImage.h"
+#include "Images/BirdImage.h"
 
 Player::Player()
 {
@@ -14,10 +16,10 @@ Player::Player()
     m_rigidbody->SetDrag(0);
 
     m_components.push_back(m_rigidbody);
-    m_components.push_back(new ImageRenderComponent(this, 56, 61, dinoImage));
+    m_components.push_back(new ImageRenderComponent(this, 39, 45, dinoSkateImage));
 }
 
-void Player::Update(float _deltaTime) noexcept
+bool Player::Update(float _deltaTime) noexcept
 {
     static bool isHolding = false;
     static float holdTime = 0;
@@ -48,4 +50,5 @@ void Player::Update(float _deltaTime) noexcept
     }
 
     AGameObject::Update(_deltaTime);
+    return true;
 }

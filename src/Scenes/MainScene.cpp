@@ -3,6 +3,7 @@
 #include "Audio/Sounds.h"
 #include "GameObjects/Player.h"
 #include "GameObjects/Ground.h"
+#include "GameObjects/Obstacle.h"
 
 MainScene::MainScene()
 {
@@ -14,7 +15,11 @@ MainScene::MainScene()
     ground->SetPosY(20);
     m_objects.push_back(ground);
 
-     AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);
-     AudioManager::Get()->PlayRepeatOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
-
+    Obstacle* obstacle = new Obstacle(10);
+    obstacle->SetPosX(M5Cardputer.Display.width());
+    obstacle->SetPosY(M5Cardputer.Display.height() * 0.5f);
+    m_objects.push_back(obstacle);
+    
+    AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);
+    AudioManager::Get()->PlayRepeatOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
 }

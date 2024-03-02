@@ -9,7 +9,7 @@ class AGameObject
     public:
         ~AGameObject();
     public:
-        virtual void Update(float _deltaTime);
+        virtual bool Update(float _deltaTime);
         virtual void Render();
 
         inline float GetPosX() { return m_posX; }

@@ -3,11 +3,14 @@
 #include "Images/Dino.h"
 #include "Audio/Sounds.h"
 #include "Audio/AudioManager.h"
+#include "Components/ImageRenderComponent.h"
 
 SoundObject::SoundObject(int _frequency) 
 {
   this->frequency = _frequency;
   this->SetPosY(M5Cardputer.Display.height() * 0.5f);
+
+  this->m_components.push_back(new ImageRenderComponent(this, 56, 61, dino));
 }
 
 void SoundObject::Update(float _deltaTime)
@@ -27,14 +30,14 @@ void SoundObject::Update(float _deltaTime)
     AudioManager::Get()->PlayOneshot(background_sound_file,  sizeof(background_sound_file), ESoundTypes::AMBIENT);
     // M5Cardputer.Speaker.playWav(background_wav_with_header, sizeof(background_wav_with_header), 1, 1, false);
   }
+  AGameObject::Update(_deltaTime);
 }
 
 
 void SoundObject::Render()
 {
-  uint16_t c = rand();
-  // M5Cardputer.Display.fillCircle(this->GetPosX(), this->GetPosY(), 17, c);
-  M5Cardputer.Display.pushImage(this->GetPosX(), this->GetPosY(),  56, 61, dino);
+  AGameObject::Render();
+
   m5::rtc_time_t time = M5.Rtc.getTime();
   M5Cardputer.Display.drawString(String(time.hours) + "|" + String(time.minutes) + "|" + String(time.seconds),
                                    M5Cardputer.Display.width() / 2,

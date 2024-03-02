@@ -1,6 +1,6 @@
 #include "M5Cardputer.h"
 #include "SoundObject.h"
-#include "Images/Dino.h"
+#include "Images/DinoImage.h"
 #include "Audio/Sounds.h"
 #include "Audio/AudioManager.h"
 #include "Components/ImageRenderComponent.h"
@@ -10,7 +10,7 @@ SoundObject::SoundObject(int _frequency)
   frequency = _frequency;
   SetPosY(M5Cardputer.Display.height() * 0.5f);
 
-  m_components.push_back(new ImageRenderComponent(this, 56, 61, dino));
+  m_components.push_back(new ImageRenderComponent(this, 56, 61, dinoImage));
 }
 
 void SoundObject::Update(float _deltaTime)

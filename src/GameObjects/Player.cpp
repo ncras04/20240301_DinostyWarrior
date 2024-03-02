@@ -3,13 +3,10 @@
 #include "Player.h"
 #include "Components/ImageRenderComponent.h"
 #include "Components/Rigidbody.h"
-#include "Images/Dino.h"
+#include "Images/DinoImage.h"
 
 Player::Player()
 {
-    SetPosX(20);
-    SetPosY(100);
-
     m_rigidbody = new Rigidbody(this);
 
     m_rigidbody->SetMass(1);
@@ -17,7 +14,7 @@ Player::Player()
     m_rigidbody->SetDrag(0);
 
     m_components.push_back(m_rigidbody);
-    m_components.push_back(new ImageRenderComponent(this, 56, 61, dino));
+    m_components.push_back(new ImageRenderComponent(this, 56, 61, dinoImage));
 }
 
 void Player::Update(float _deltaTime) noexcept

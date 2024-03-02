@@ -14,5 +14,5 @@ MainScene::MainScene()
     ground->SetPosY(20);
     m_objects.push_back(ground);
 
-    // AudioManager::Get()->PlayOneshot(los_gehts_soundfile, sizeof(los_gehts_soundfile), ESoundTypes::AMBIENT);
+     AudioManager::Get()->PlayOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
 }

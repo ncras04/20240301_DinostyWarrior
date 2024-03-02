@@ -2,7 +2,6 @@
 
 #include "Ground.h"
 #include "Components/ImageRenderComponent.h"
-#include "Images/GroundImage.h"
 
 Ground::Ground(int _scrollSpeed, int _spacePerPoint)
 {

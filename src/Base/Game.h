@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-class AGameObject;
+class Scene;
 
 class Game
 {
@@ -10,5 +10,5 @@ class Game
         void Run();
 
     private:
-        std::vector<AGameObject*> m_objects = std::vector<AGameObject*>();
+        Scene* m_activeScene = nullptr;
 };

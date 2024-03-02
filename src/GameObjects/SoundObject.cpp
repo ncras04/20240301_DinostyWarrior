@@ -1,8 +1,8 @@
 #include "M5Cardputer.h"
 #include "SoundObject.h"
-#include "Dino.h"
-#include "Sounds.h"
-#include "AudioManager.h"
+#include "Images/Dino.h"
+#include "Audio/Sounds.h"
+#include "Audio/AudioManager.h"
 
 SoundObject::SoundObject(int _frequency) 
 {

@@ -1,7 +1,7 @@
 #include "M5Cardputer.h"
 #include "Game.h"
-#include "GameObject.h"
-#include "SoundObject.h"
+#include "Gameobjects/GameObject.h"
+#include "GameObjects/SoundObject.h"
 #include <M5Unified.h>
 
 void Game::Setup()

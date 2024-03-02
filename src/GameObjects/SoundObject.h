@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-class SoundObject : public GameObject 
+class SoundObject : public AGameObject 
 {
   public:
     SoundObject(int _frequency);

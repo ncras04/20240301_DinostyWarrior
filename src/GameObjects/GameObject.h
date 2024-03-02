@@ -1,6 +1,6 @@
 #pragma once
 
-class GameObject 
+class AGameObject 
 {
     public:
         virtual void Update(float _deltaTime) = 0;

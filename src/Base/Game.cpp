@@ -26,14 +26,14 @@ void Game::Setup()
 void Game::Run()
 {    
     M5Cardputer.update();
-    for (GameObject* go : this->m_objects)
+    for (AGameObject* go : this->m_objects)
     {
         go->Update(0.2f);
         delay(100);
     }
     // Clear screen
     M5Cardputer.Display.fillScreen(TFT_BLACK);
-    for (GameObject* go : this->m_objects)
+    for (AGameObject* go : this->m_objects)
     {
         go->Render();
     }

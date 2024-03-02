@@ -3,7 +3,7 @@
 
 AGameObject::~AGameObject()
 {
-    for (AComponent* component : this->m_components)
+    for (AComponent* component : m_components)
     {
         delete component;
     }
@@ -11,7 +11,7 @@ AGameObject::~AGameObject()
 
 void AGameObject::Update(float _deltaTime)
 {
-    for (AComponent* component : this->m_components)
+    for (AComponent* component : m_components)
     {
         component->Update(_deltaTime);
     }
@@ -19,7 +19,7 @@ void AGameObject::Update(float _deltaTime)
 
 void AGameObject::Render()
 {
-    for (AComponent* component : this->m_components)
+    for (AComponent* component : m_components)
     {
         component->Render();
     }

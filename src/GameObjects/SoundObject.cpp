@@ -7,20 +7,20 @@
 
 SoundObject::SoundObject(int _frequency) 
 {
-  this->frequency = _frequency;
-  this->SetPosY(M5Cardputer.Display.height() * 0.5f);
+  frequency = _frequency;
+  SetPosY(M5Cardputer.Display.height() * 0.5f);
 
-  this->m_components.push_back(new ImageRenderComponent(this, 56, 61, dino));
+  m_components.push_back(new ImageRenderComponent(this, 56, 61, dino));
 }
 
 void SoundObject::Update(float _deltaTime)
 {
-  float newPos = this->GetPosX() + 50 * _deltaTime;
+  float newPos = GetPosX() + 50 * _deltaTime;
   if (newPos > M5Cardputer.Display.width())
   {
     newPos = 0;
   }
-  this->SetPosX(newPos);
+  SetPosX(newPos);
 
   if (M5Cardputer.Keyboard.isKeyPressed('a'))
   {

@@ -12,10 +12,10 @@ class AGameObject
         virtual void Update(float _deltaTime);
         virtual void Render();
 
-        inline float GetPosX() { return this->m_posX; }
-        inline float GetPosY() { return this->m_posY; }
-        inline void SetPosX(float _posX) {this->m_posX = _posX; };
-        inline void SetPosY(float _posY) {this->m_posY = _posY; };
+        inline float GetPosX() { return m_posX; }
+        inline float GetPosY() { return m_posY; }
+        inline void SetPosX(float _posX) {m_posX = _posX; };
+        inline void SetPosY(float _posY) {m_posY = _posY; };
 
     protected:
         std::vector<AComponent*> m_components = std::vector<AComponent*>();

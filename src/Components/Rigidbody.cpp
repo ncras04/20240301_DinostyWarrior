@@ -14,8 +14,8 @@ void Rigidbody::AddForce(float _x, float _y)
 {
     // f = m * a
     // a = f / m
-    m_accelerationX += _x / this->m_mass;
-    m_accelerationY += _y / this->m_mass;
+    m_accelerationX += _x / m_mass;
+    m_accelerationY += _y / m_mass;
 }
 
 void Rigidbody::AddImpulse(float _x, float _y)
@@ -26,33 +26,33 @@ void Rigidbody::AddImpulse(float _x, float _y)
 
 void Rigidbody::Update(float _deltaTime) noexcept
 {
-    float posX = this->m_owner->GetPosX();
-    float posY = this->m_owner->GetPosY();
+    float posX = m_owner->GetPosX();
+    float posY = m_owner->GetPosY();
 
-    m_accelerationX = m_accelerationX - (m_accelerationX * (this->m_drag * _deltaTime));
-    m_accelerationY = m_accelerationY - (m_accelerationY * (this->m_drag * _deltaTime));
+    m_accelerationX = m_accelerationX - (m_accelerationX * (m_drag * _deltaTime));
+    m_accelerationY = m_accelerationY - (m_accelerationY * (m_drag * _deltaTime));
 
     // v = a * t
-    this->m_velocityX += this->m_accelerationX * _deltaTime;
-    this->m_velocityY += this->m_accelerationY * _deltaTime;
-    this->m_velocityY -= Rigidbody::s_gravity * _deltaTime;
+    m_velocityX += m_accelerationX * _deltaTime;
+    m_velocityY += m_accelerationY * _deltaTime;
+    m_velocityY -= Rigidbody::s_gravity * _deltaTime;
 
-   // M5Cardputer.Display.println("Velociy X" + String(this->m_velocityX));
-   // M5Cardputer.Display.println("Velociy Y" + String(this->m_velocityY));
-   // M5Cardputer.Display.println("Acceleration X" + String(this->m_accelerationX));
-   // M5Cardputer.Display.println("Acceleration Y" + String(this->m_accelerationY));
+   // M5Cardputer.Display.println("Velociy X" + String(m_velocityX));
+   // M5Cardputer.Display.println("Velociy Y" + String(m_velocityY));
+   // M5Cardputer.Display.println("Acceleration X" + String(m_accelerationX));
+   // M5Cardputer.Display.println("Acceleration Y" + String(m_accelerationY));
 
     // s = v * t
-    posX += this->m_velocityX * _deltaTime;
-    posY += this->m_velocityY * _deltaTime;
+    posX += m_velocityX * _deltaTime;
+    posY += m_velocityY * _deltaTime;
 
-    if (posY < this->m_floorLevel)
+    if (posY < m_floorLevel)
     {
         posY = m_floorLevel;
         m_isGrounded = true;
         m_accelerationY = 0;
     }
-    else if (posY > this->m_floorLevel)
+    else if (posY > m_floorLevel)
     {
         m_isGrounded = false;
     }

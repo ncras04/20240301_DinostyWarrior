@@ -1,4 +1,4 @@
-# 1 "C:\\Users\\Student\\AppData\\Local\\Temp\\tmphxa147ku"
+# 1 "C:\\Users\\Student\\AppData\\Local\\Temp\\tmpsjf7z4rb"
 #include <Arduino.h>
 # 1 "C:/Users/Student/Downloads/20240301_DinostyWarrior/src/katze.ino"
 #include "M5Cardputer.h"

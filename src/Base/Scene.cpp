@@ -4,23 +4,23 @@
 
 Scene::~Scene()
 {
-    for (AGameObject* go : this->m_objects)
+    for (AGameObject* go : m_objects)
     {
         delete go;
     }
 }
 
-char* Scene::Update(float _deltaTime)
+std::string Scene::Update(float _deltaTime) noexcept
 {    
-    for (AGameObject* go : this->m_objects)
+    for (AGameObject* go : m_objects)
     {
         go->Update(_deltaTime);
     }
 
-    for (AGameObject* go : this->m_objects)
+    for (AGameObject* go : m_objects)
     {
         go->Render();
     }
 
-    return "";
+    return std::string("");
 }

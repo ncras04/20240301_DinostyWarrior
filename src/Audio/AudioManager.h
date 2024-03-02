@@ -14,6 +14,7 @@ class AudioManager
         static AudioManager* Get();
     public:
         void PlayOneshot(const uint8_t* _data, int _length, ESoundTypes _type);
+        void PlayRepeatOneshot(const uint8_t* _data, int _length, ESoundTypes _type);
 
     private:
         AudioManager() {}

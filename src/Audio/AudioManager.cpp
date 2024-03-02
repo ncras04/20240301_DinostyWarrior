@@ -11,7 +11,12 @@ AudioManager* AudioManager::Get()
     return s_instance;
 }
 
+void AudioManager::PlayRepeatOneshot(const uint8_t* _data, int _length, ESoundTypes _type)
+{
+    M5Cardputer.Speaker.playWav(_data, _length, 0, (int)_type, false);
+}
+
 void AudioManager::PlayOneshot(const uint8_t* _data, int _length, ESoundTypes _type)
 {
-    M5Cardputer.Speaker.playWav(_data, _length, 0, (int)_type, true);
+    M5Cardputer.Speaker.playWav(_data, _length, 1, (int)_type, false);
 }

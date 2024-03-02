@@ -14,5 +14,7 @@ MainScene::MainScene()
     ground->SetPosY(20);
     m_objects.push_back(ground);
 
-     AudioManager::Get()->PlayOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
+     AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);
+     AudioManager::Get()->PlayRepeatOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
+
 }

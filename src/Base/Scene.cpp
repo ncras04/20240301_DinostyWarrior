@@ -13,6 +13,7 @@ Scene::~Scene()
 
 std::string Scene::Update(float _deltaTime) noexcept
 {    
+    std::string returnValue = "";
     std::list<AGameObject*> toRemove = std::list<AGameObject*>();
     for (AGameObject* go : m_objects)
     {
@@ -34,6 +35,12 @@ std::string Scene::Update(float _deltaTime) noexcept
             if (m_objects[i]->m_Collider->Intersect(m_objects[j]->m_Collider))
             {
                 M5.Speaker.tone(261.626, 1000, 1);
+                if (m_objects[i]->m_Collider->GetTag() == "Player"
+                    || m_objects[j]->m_Collider->GetTag() == "Player")
+                    {
+                        // Game over
+                        returnValue = "GameOver";
+                    }
             }
         }
         
@@ -55,5 +62,14 @@ std::string Scene::Update(float _deltaTime) noexcept
         go->Render();
     }
 
-    return std::string("");
+    static float points = 0;
+    float pointsIncreasePerSecond = 1;
+
+    points += pointsIncreasePerSecond * _deltaTime;
+
+    M5Cardputer.Display.setTextColor(BLACK);
+    M5Cardputer.Display.setCursor(160,10, 2);
+    M5Cardputer.Display.print("brojac: " + String((int)points));
+
+    return returnValue;
 }

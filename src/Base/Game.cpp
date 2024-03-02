@@ -18,10 +18,10 @@ void Game::Setup()
     textsize = 1;
     M5Cardputer.Display.setSwapBytes(true);
     M5Cardputer.Display.setRotation(1);
-    M5Cardputer.Display.setTextColor(GREEN);
+    M5Cardputer.Display.setTextColor(BLACK);
     M5Cardputer.Display.setTextDatum(middle_center);
     M5Cardputer.Display.setFont(&fonts::Orbitron_Light_32);
-    M5Cardputer.Display.setTextSize(textsize);
+    M5Cardputer.Display.setTextSize(textsize, textsize);
 
     ImageRenderComponent::s_ScreenWidth = M5Cardputer.Display.width();
     ImageRenderComponent::s_ScreenHeight = M5Cardputer.Display.height();
@@ -41,12 +41,25 @@ void Game::Run()
     {
         return;
     }
+    delay(100);
     M5Cardputer.Display.fillScreen(TFT_WHITE);
-
-    std::string new_scene = m_activeScene->Update(deltaSeconds);
-    if (new_scene != "")
+    std::string newScene = m_activeScene->Update(deltaSeconds);
+    if (newScene != "")
     {
         // Load new scene
+        if (newScene == "GameOver")
+        {
+            M5Cardputer.Display.setTextColor(BLACK);
+            M5Cardputer.Display.setTextDatum(middle_center);
+            M5Cardputer.Display.setFont(&fonts::Orbitron_Light_32);
+            M5Cardputer.Display.setTextSize(1, 1);
+            M5Cardputer.Display.drawString("Game Over!", M5Cardputer.Display.width() * 0.5f, M5Cardputer.Display.height() * 0.5f);
+            delete m_activeScene;
+            M5Cardputer.Speaker.stop();
+            delay(5000);
+            m_activeScene = new MainScene();
+            currentFrame = millis();
+        }
     }
     lastFrame = currentFrame;
 }

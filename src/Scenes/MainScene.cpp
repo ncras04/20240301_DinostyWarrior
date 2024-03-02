@@ -16,9 +16,14 @@ MainScene::MainScene()
 
     Obstacle* obstacle = new Obstacle(10);
     obstacle->SetPosX(M5Cardputer.Display.width());
+    obstacle->SetPosY(M5Cardputer.Display.height() * 0.6f);
+    m_objects.push_back(obstacle);
+    
+    obstacle = new Obstacle(20);
+    obstacle->SetPosX(M5Cardputer.Display.width());
     obstacle->SetPosY(M5Cardputer.Display.height() * 0.2f);
     m_objects.push_back(obstacle);
     
-    // AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);
-    // AudioManager::Get()->PlayRepeatOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
+    AudioManager::Get()->PlayOneshot(testintro, sizeof(testintro), ESoundTypes::AMBIENT);
+    AudioManager::Get()->PlayRepeatOneshot(test, sizeof(test), ESoundTypes::AMBIENT);
 }

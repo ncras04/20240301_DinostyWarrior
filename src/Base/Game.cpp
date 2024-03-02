@@ -25,11 +25,15 @@ void Game::Setup()
 
 void Game::Run()
 {    
+    static int lastFrame = millis();
+    int currentFrame = millis();
+
+    float deltaSeconds = (currentFrame - lastFrame) * 0.001f;
+
     M5Cardputer.update();
     for (AGameObject* go : this->m_objects)
     {
-        go->Update(0.2f);
-        delay(100);
+        go->Update(deltaSeconds);
     }
     // Clear screen
     M5Cardputer.Display.fillScreen(TFT_BLACK);
@@ -37,4 +41,5 @@ void Game::Run()
     {
         go->Render();
     }
+    lastFrame = currentFrame;
 }

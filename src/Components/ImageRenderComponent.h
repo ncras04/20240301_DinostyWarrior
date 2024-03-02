@@ -13,6 +13,10 @@ class ImageRenderComponent : public AComponent
         virtual void Update(float _deltaTime) noexcept override;
         virtual void Render() noexcept override;
 
+    public:
+        static int s_ScreenWidth;
+        static int s_ScreenHeight;
+
     private:
         int m_imageWidth = 0;
         int m_imageHeight = 0;

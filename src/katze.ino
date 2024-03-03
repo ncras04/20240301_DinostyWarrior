@@ -1,14 +1,14 @@
 #include "M5Cardputer.h"
 #include "Base/Game.h"
 
-Game game = Game();
+Game* game = Game::Get();
 
 void setup() 
 {
-  game.Setup();
+  game->Setup();
 }
 
 void loop() 
 {
-  game.Run();  
+  game->Run();  
 }

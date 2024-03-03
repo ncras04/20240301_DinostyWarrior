@@ -5,6 +5,17 @@
 #include "Components/ImageRenderComponent.h"
 #include <M5Unified.h>
 
+Game* Game::s_instance = nullptr;
+
+Game* Game::Get()
+{
+    if (nullptr == s_instance)
+    {
+        s_instance = new Game();
+    }
+    return s_instance;
+}
+
 void Game::Setup()
 {
     auto cfg = M5.config();
@@ -25,6 +36,8 @@ void Game::Setup()
 
     ImageRenderComponent::s_ScreenWidth = M5Cardputer.Display.width();
     ImageRenderComponent::s_ScreenHeight = M5Cardputer.Display.height();
+
+    M5Cardputer.Speaker.setAllChannelVolume(0);
 
     m_activeScene = new MainScene();
 }
@@ -68,11 +81,16 @@ void Game::Run()
     if (lastCheckTime > 1.0f)
     {
         temperature = temperatureRead();
-        // M5Cardputer.Speaker.tone(temperature * 100, 250, 7, true);
+        M5Cardputer.Speaker.tone(temperature * 100, 250, 7, true);
 
         lastCheckTime -= 1.0f;
     }
     M5Cardputer.Display.setCursor(0,10, 2);
     M5Cardputer.Display.print("celzija: " + String(temperature));
     lastFrame = currentFrame;
+}
+
+Scene* Game::GetActiveScene() const noexcept
+{
+    return m_activeScene;
 }

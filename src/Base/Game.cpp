@@ -56,9 +56,7 @@ void Game::Run()
         return;
     }
     delay(100);
-    // f4d4b1
-    M5Cardputer.Display.fillScreen(0xF4D4B1);
-    //M5Cardputer.Display.fillScreen(TFT_RED);
+    M5Cardputer.Display.fillScreen(0xF695);
     std::string newScene = m_activeScene->Update(deltaSeconds);
     if (newScene != "")
     {

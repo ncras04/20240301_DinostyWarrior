@@ -14,8 +14,8 @@ Player::Player(int _floorLevel)
     m_rigidbody->SetMass(1);
     m_rigidbody->SetFloorLevel(_floorLevel);
     m_rigidbody->SetDrag(0.1f);
-
-    m_Collider = new BoxCollision(this, 0, 0, 39, 45);
+    int padding = 8;
+    m_Collider = new BoxCollision(this, 0 + padding, 0 + padding, 39 - padding, 45 - padding);
     SetTag("Player");
     m_components.push_back(m_rigidbody);
     m_renderer = new ImageRenderComponent(this, 39, 45, dinoSkateImage);

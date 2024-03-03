@@ -17,6 +17,7 @@ void AudioManager::Init()
     M5Cardputer.Speaker.setVolume(m_currentVolume);
 
     M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::ZUNDAMON, 255);
+    M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::ZUNDAQUEUE, 255);
     M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::EFFECTS, 255);
     M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::EFFECT2, 255);
     M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::MUSIC, 255);
@@ -62,7 +63,7 @@ void AudioManager::PlayVoice(const uint8_t *_data, int _length)
 
 void AudioManager::PlayQueuedVoice(const uint8_t *_data, int _length)
 {
-    M5Cardputer.Speaker.playWav(_data, _length, 1, (int)ESoundChannels::ZUNDAMON, false);
+    M5Cardputer.Speaker.playWav(_data, _length, 1, (int)ESoundChannels::ZUNDAQUEUE, false);
 }
 
 void AudioManager::PlaySound(const uint8_t *_data, int _length)

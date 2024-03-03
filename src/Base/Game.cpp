@@ -4,6 +4,7 @@
 #include "Scenes/MainScene.h"
 #include "Components/ImageRenderComponent.h"
 #include "Audio/AudioManager.h"
+#include "Audio/Sounds.h"
 #include <M5Unified.h>
 
 Game* Game::s_instance = nullptr;
@@ -56,8 +57,8 @@ void Game::Run()
     }
     delay(100);
     // f4d4b1
-   // M5Cardputer.Display.fillScreen(0xF4D4B1);
-    M5Cardputer.Display.fillScreen(TFT_RED);
+    M5Cardputer.Display.fillScreen(0xF4D4B1);
+    //M5Cardputer.Display.fillScreen(TFT_RED);
     std::string newScene = m_activeScene->Update(deltaSeconds);
     if (newScene != "")
     {
@@ -71,6 +72,7 @@ void Game::Run()
             M5Cardputer.Display.drawString("Game Over!", M5Cardputer.Display.width() * 0.5f, M5Cardputer.Display.height() * 0.5f);
             delete m_activeScene;
             M5Cardputer.Speaker.stop();
+            AudioManager::Get()->PlayVoice(ZundaGemein, sizeof(ZundaGemein));
             delay(5000);
             m_activeScene = new MainScene();
             currentFrame = millis();

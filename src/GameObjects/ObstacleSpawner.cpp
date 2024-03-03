@@ -62,7 +62,6 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
         static const double fraction = 1.0 / (RAND_MAX + 1.0);
         if (m_timeUntilCat < 0)
         {
-            M5Cardputer.Speaker.stop();
 
             m_timeUntilCat = m_minTimeBetweenCats + static_cast<int>((m_minMaxTimeBetweenCats - m_minTimeBetweenCats + 1) * (std::rand() * fraction));
             Obstacle *obstacle = m_catObstacle;
@@ -75,6 +74,7 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
 
             Game::Get()->GetActiveScene()->AddGameObject(obstacle);
 
+            // M5Cardputer.Speaker.stop();
             AudioManager::Get()->PlaySound(SFXAlert, sizeof(SFXAlert));
             AudioManager::Get()->PlaySound(BGMCatBossEvent, sizeof(BGMCatBossEvent));
             // AudioManager::Get()->PlayBGMRepeat(BGMLevel, sizeof(BGMLevel));
@@ -83,11 +83,12 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
         {
             if (m_inactiveObstacles.size() > 0)
             {
-
                 int index = rand() % m_inactiveObstacles.size();
                 Obstacle *obstacle = m_inactiveObstacles[index];
                 if (nullptr == obstacle)
                     return "";
+
+                AudioManager::Get()->PlayVoice(ZundaScheisse, sizeof(ZundaScheisse));    
                 m_inactiveObstacles.erase(m_inactiveObstacles.begin() + index);
 
                 SetupObstacle(obstacle);

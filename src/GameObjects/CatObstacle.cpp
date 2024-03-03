@@ -1,6 +1,9 @@
 #include "CatObstacle.h"
 #include "Components/AnimationRenderComponent.h"
 #include "Images/Header/CatImage.h"
+#include "Audio/AudioManager.h"
+#include "Audio/Sounds.h"
+
 
 CatObstacle::CatObstacle(int _movementSpeed)
 {
@@ -22,6 +25,7 @@ bool CatObstacle::Update(float _deltaTime) noexcept
     {
         m_isCharging = true;
         m_movementSpeed = m_baseMovementSpeed * 3;
+        AudioManager::Get()->PlayVoice(ZundaScheissKatze, sizeof(ZundaScheissKatze));
     }
 
     return true;

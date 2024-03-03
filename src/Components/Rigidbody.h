@@ -19,6 +19,7 @@ class Rigidbody : public AComponent
 
         void AddForce(float _x, float _y);
         void AddImpulse(float _x, float _y);
+        void ResetAcceleration();
     private:
         static float s_gravity;
 

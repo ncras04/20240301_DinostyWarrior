@@ -4,6 +4,7 @@
 
 // forward declarations
 class Rigidbody;
+class ImageRenderComponent;
 
 class Player : public AGameObject
 {
@@ -15,5 +16,6 @@ class Player : public AGameObject
 
     protected:
         Rigidbody* m_rigidbody = nullptr;
+        ImageRenderComponent* m_renderer = nullptr;
 };
 #endif // LIBRARY_PLAYER_H

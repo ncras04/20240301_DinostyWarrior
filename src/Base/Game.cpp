@@ -5,6 +5,17 @@
 #include "Components/ImageRenderComponent.h"
 #include <M5Unified.h>
 
+Game* Game::s_instance = nullptr;
+
+Game* Game::Get()
+{
+    if (nullptr == s_instance)
+    {
+        s_instance = new Game();
+    }
+    return s_instance;
+}
+
 void Game::Setup()
 {
     auto cfg = M5.config();
@@ -18,13 +29,15 @@ void Game::Setup()
     textsize = 1;
     M5Cardputer.Display.setSwapBytes(true);
     M5Cardputer.Display.setRotation(1);
-    M5Cardputer.Display.setTextColor(GREEN);
+    M5Cardputer.Display.setTextColor(BLACK);
     M5Cardputer.Display.setTextDatum(middle_center);
     M5Cardputer.Display.setFont(&fonts::Orbitron_Light_32);
-    M5Cardputer.Display.setTextSize(textsize);
+    M5Cardputer.Display.setTextSize(textsize, textsize);
 
     ImageRenderComponent::s_ScreenWidth = M5Cardputer.Display.width();
     ImageRenderComponent::s_ScreenHeight = M5Cardputer.Display.height();
+
+    M5Cardputer.Speaker.setAllChannelVolume(0);
 
     m_activeScene = new MainScene();
 }
@@ -41,12 +54,43 @@ void Game::Run()
     {
         return;
     }
+    delay(100);
     M5Cardputer.Display.fillScreen(TFT_WHITE);
-
-    std::string new_scene = m_activeScene->Update(deltaSeconds);
-    if (new_scene != "")
+    std::string newScene = m_activeScene->Update(deltaSeconds);
+    if (newScene != "")
     {
         // Load new scene
+        if (newScene == "GameOver")
+        {
+            M5Cardputer.Display.setTextColor(BLACK);
+            M5Cardputer.Display.setTextDatum(middle_center);
+            M5Cardputer.Display.setFont(&fonts::Orbitron_Light_32);
+            M5Cardputer.Display.setTextSize(1, 1);
+            M5Cardputer.Display.drawString("Game Over!", M5Cardputer.Display.width() * 0.5f, M5Cardputer.Display.height() * 0.5f);
+            delete m_activeScene;
+            M5Cardputer.Speaker.stop();
+            delay(5000);
+            m_activeScene = new MainScene();
+            currentFrame = millis();
+        }
     }
+    static float lastCheckTime = 0;
+    static float temperature = temperatureRead();
+    lastCheckTime += deltaSeconds * temperature / 25.0f;
+
+    if (lastCheckTime > 1.0f)
+    {
+        temperature = temperatureRead();
+        M5Cardputer.Speaker.tone(temperature * 100, 250, 7, true);
+
+        lastCheckTime -= 1.0f;
+    }
+    M5Cardputer.Display.setCursor(0,10, 2);
+    M5Cardputer.Display.print("celzija: " + String(temperature));
     lastFrame = currentFrame;
+}
+
+Scene* Game::GetActiveScene() const noexcept
+{
+    return m_activeScene;
 }

@@ -3,7 +3,7 @@
 #include "Rigidbody.h"
 #include "GameObjects/GameObject.h"
 
-float Rigidbody::s_gravity = 40.0f;
+float Rigidbody::s_gravity = 100.0f;
 
 Rigidbody::Rigidbody(AGameObject* _owner) : AComponent(_owner)
 {
@@ -64,4 +64,10 @@ void Rigidbody::Update(float _deltaTime) noexcept
 void Rigidbody::Render() noexcept
 {
 
+}
+
+void Rigidbody::ResetAcceleration()
+{
+    m_accelerationX = 0;
+    m_accelerationY = 0;
 }

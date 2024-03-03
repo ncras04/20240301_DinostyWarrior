@@ -14,6 +14,7 @@ class ImageRenderComponent : public AComponent
         virtual void Update(float _deltaTime) noexcept override;
         virtual void Render() noexcept override;
 
+        inline void SetData(const unsigned short* _data) { m_data = _data; }
     public:
         static int s_ScreenWidth;
         static int s_ScreenHeight;

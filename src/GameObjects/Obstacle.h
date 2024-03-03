@@ -8,6 +8,8 @@ class Obstacle: public AGameObject
         Obstacle(int _movementSpeed);
 
     public:
+        inline void SetMovementSpeed(int _movementSpeed) noexcept { m_movementSpeed = _movementSpeed; }
+        
         virtual bool Update(float _deltaTime) noexcept override;
 
     protected:

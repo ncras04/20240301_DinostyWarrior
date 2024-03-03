@@ -9,6 +9,8 @@
 #include "GameObjects/Bricks.h"
 #include "GameObjects/Window.h"
 
+#define SOUNDDEBUG
+
 MainScene::MainScene()
 {
     Ground* ground = new Ground(50, 20);
@@ -44,6 +46,6 @@ MainScene::MainScene()
     Player* player = new Player(10);
     player->SetPosX(20);
     m_objects.push_back(player);
-    AudioManager::Get()->PlayOneshot(testbossintro, sizeof(testbossintro), ESoundTypes::AMBIENT);
-    AudioManager::Get()->PlayRepeatOneshot(testboss, sizeof(testboss), ESoundTypes::AMBIENT);
+    AudioManager::Get()->PlayBGM(BGMLevelIntro, sizeof(BGMLevelIntro));
+    AudioManager::Get()->PlayBGMRepeat(BGMLevel, sizeof(BGMLevel));
 }

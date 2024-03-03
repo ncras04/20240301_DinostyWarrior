@@ -57,7 +57,6 @@ std::string Scene::Update(float _deltaTime) noexcept
     {
         go->Render();
     }
-
     return returnValue;
 }
 

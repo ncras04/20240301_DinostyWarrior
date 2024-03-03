@@ -2,11 +2,12 @@
 #define LIBRARY_AUDIOMANAGER_H
 #include "M5Cardputer.h"
 
-enum class ESoundTypes : unsigned char 
+enum class ESoundChannels : unsigned char 
 {
-    AMBIENT,
+    ZUNDAMON,
     MUSIC,
-    EFFECTS
+    EFFECTS,
+    EFFECT2,
 };
 
 class AudioManager 
@@ -14,13 +15,18 @@ class AudioManager
     public:
         static AudioManager* Get();
     public:
-        void PlayOneshot(const uint8_t* _data, int _length, ESoundTypes _type);
-        void PlayRepeatOneshot(const uint8_t* _data, int _length, ESoundTypes _type);
+        void PlayBGM(const uint8_t* _data, int _length);
+        void PlayVoice(const uint8_t* _data, int _length);
+        void PlaySound(const uint8_t* _data, int _length);
+        void PlayBGMRepeat(const uint8_t* _data, int _length);
+        void Update();
 
     private:
         AudioManager() {}
+        void Init();
 
     private:
         static AudioManager* s_instance;
+        uint8_t m_currentVolume{0};
 };
 #endif // LIBRARY_AUDIOMANAGER_H

@@ -74,10 +74,8 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
 
             Game::Get()->GetActiveScene()->AddGameObject(obstacle);
 
-            // M5Cardputer.Speaker.stop();
             AudioManager::Get()->PlaySound(SFXAlert, sizeof(SFXAlert));
             AudioManager::Get()->PlaySound(BGMCatBossEvent, sizeof(BGMCatBossEvent));
-            // AudioManager::Get()->PlayBGMRepeat(BGMLevel, sizeof(BGMLevel));
         }
         else
         {
@@ -88,7 +86,6 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
                 if (nullptr == obstacle)
                     return "";
 
-                AudioManager::Get()->PlayVoice(ZundaScheisse, sizeof(ZundaScheisse));    
                 m_inactiveObstacles.erase(m_inactiveObstacles.begin() + index);
 
                 SetupObstacle(obstacle);
@@ -115,6 +112,7 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
         if (obstacle->GetTag() != "Cat")
         {
             m_inactiveObstacles.push_back(obstacle);
+            AudioManager::Get()->PlayVoice(ZundaScheissKatze, sizeof(ZundaScheissKatze));
         }
 
         std::vector<Obstacle *>::iterator obstaclePosition = std::find(m_activeObstacles.begin(), m_activeObstacles.end(), obstacle);

@@ -43,7 +43,7 @@ bool Player::Update(float _deltaTime) noexcept
         {
             if (M5Cardputer.BtnA.wasPressed())
             {
-                AudioManager::Get()->PlayVoice(ZundaOh, sizeof(ZundaOh));
+                AudioManager::Get()->PlayVoice(ZundaLosGehts, sizeof(ZundaLosGehts));
                 m_rigidbody->AddImpulse(0, 120);
                 isHolding = true; 
                 holdTime = 0.0f;
@@ -56,7 +56,6 @@ bool Player::Update(float _deltaTime) noexcept
             }
             if (M5Cardputer.BtnA.wasReleased())
             {
-                AudioManager::Get()->PlayVoice(ZundaOk, sizeof(ZundaOk));
                 holdTime = 0.0f;
                 isHolding = false;
                 m_rigidbody->ResetAcceleration();

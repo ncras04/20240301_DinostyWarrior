@@ -13,7 +13,6 @@ BoxCollision::BoxCollision(AGameObject* _owner, int _minX, int _minY, int _maxX,
 
 bool BoxCollision::Intersect(const BoxCollision* _other) const noexcept
 {
-    return false;
     float posX = m_owner->GetPosX();
     float posY = m_owner->GetPosY();
 
@@ -38,7 +37,7 @@ void BoxCollision::Render() noexcept
     return;
     
     float posX = m_owner->GetPosX();
-    float posY = m_owner->GetPosY() - m_minY + (m_maxY - m_minY);
+    float posY = m_owner->GetPosY() + m_minY + (m_maxY - m_minY);
 
     posY = ImageRenderComponent::s_ScreenHeight - posY;
 

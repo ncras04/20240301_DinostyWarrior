@@ -136,7 +136,7 @@ void ObstacleSpawner::SetupObstacle(Obstacle *_obstacle) noexcept
     }
     else if (_obstacle->GetTag() == "Cat")
     {
-        _obstacle->SetPosY(5);
+        _obstacle->SetPosY(0);
     }
     else
     {

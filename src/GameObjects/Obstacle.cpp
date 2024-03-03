@@ -3,12 +3,12 @@
 #include "Components/ImageRenderComponent.h"
 #include "Images/TrashImage.h"
 
-Obstacle::Obstacle(int _movementSpeed)
+Obstacle::Obstacle(int _movementSpeed, std::string _tag, int _imageWidth, int _imageHeight, const unsigned short* _data)
 {
     m_movementSpeed = _movementSpeed;
-    m_Collider = new BoxCollision(this, "Obstacle", 0, 0, 29, 32);
-
-    m_components.push_back(new ImageRenderComponent(this, 29, 32, trashImage));
+    m_Collider = new BoxCollision(this, 0, 0, _imageWidth, _imageHeight);
+    SetTag(_tag);
+    m_components.push_back(new ImageRenderComponent(this, _imageWidth, _imageHeight, _data));
     m_components.push_back(m_Collider);
 }
 

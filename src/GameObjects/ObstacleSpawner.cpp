@@ -32,12 +32,15 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
     m_timeSinceLastSpawn += _deltaTime;
     if (m_timeSinceLastSpawn >= 0)
     {
+        static const double fraction = 1.0 / (RAND_MAX + 1.0);
         if (m_inactiveObstacles.size() > 0)
         {
-            Obstacle* obstacle = m_inactiveObstacles[0];
+            
+            int index = rand() % m_inactiveObstacles.size();
+            Obstacle* obstacle = m_inactiveObstacles[index];
             if (nullptr == obstacle)
                 return "";
-            m_inactiveObstacles.erase(m_inactiveObstacles.begin());
+            m_inactiveObstacles.erase(m_inactiveObstacles.begin() + index);
 
             SetupObstacle(obstacle);
 
@@ -45,7 +48,6 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
 
             Game::Get()->GetActiveScene()->AddGameObject(obstacle);
         }
-        static const double fraction = 1.0 / (RAND_MAX + 1.0);
         int time = m_minSpawnDelay + static_cast<int>((m_maxSpawnDelay - m_minSpawnDelay + 1) * (std::rand() * fraction));
         m_timeSinceLastSpawn = -1 * time;
     }   

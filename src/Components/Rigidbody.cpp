@@ -65,3 +65,9 @@ void Rigidbody::Render() noexcept
 {
 
 }
+
+void Rigidbody::ResetAcceleration()
+{
+    m_accelerationX = 0;
+    m_accelerationY = 0;
+}

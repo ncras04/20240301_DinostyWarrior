@@ -8,6 +8,7 @@ enum class ESoundChannels : unsigned char
     MUSIC,
     EFFECTS,
     EFFECT2,
+    ZUNDAQUEUE,
 };
 
 class AudioManager 
@@ -18,7 +19,6 @@ class AudioManager
         void PlayBGM(const uint8_t* _data, int _length);
         void PlayVoice(const uint8_t* _data, int _length);
         void PlayQueuedVoice(const uint8_t* _data, int _length);
-
         void PlaySound(const uint8_t* _data, int _length);
         void PlayBGMRepeat(const uint8_t* _data, int _length);
         void Update();
@@ -26,9 +26,9 @@ class AudioManager
     private:
         AudioManager() {}
         void Init();
-
+        
     private:
         static AudioManager* s_instance;
-        uint8_t m_currentVolume{0};
+        uint8_t m_currentVolume{120};
 };
 #endif // LIBRARY_AUDIOMANAGER_H

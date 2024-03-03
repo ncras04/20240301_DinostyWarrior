@@ -11,6 +11,5 @@ class MainScene : public Scene
 {
     public:
         MainScene();
-        std::string Update(float _deltaTime) noexcept;
 };
 #endif // LIBRARY_MAINSCENE_H

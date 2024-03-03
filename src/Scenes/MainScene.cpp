@@ -46,6 +46,11 @@ MainScene::MainScene()
     Player* player = new Player(10);
     player->SetPosX(20);
     m_objects.push_back(player);
+
+    AudioManager::Get()->PlayQueuedVoice(ZundaHallo, sizeof(ZundaHallo));
+    AudioManager::Get()->PlayQueuedVoice(ZundaLassUnsSpielen, sizeof(ZundaLassUnsSpielen));
+    AudioManager::Get()->PlayQueuedVoice(ZundaLosGehts, sizeof(ZundaLosGehts));
+    
     AudioManager::Get()->PlayBGM(BGMLevelIntro, sizeof(BGMLevelIntro));
     AudioManager::Get()->PlayBGMRepeat(BGMLevel, sizeof(BGMLevel));
 }

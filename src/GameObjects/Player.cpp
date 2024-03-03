@@ -6,6 +6,9 @@
 #include "Images/Header/DinoSkateImage.h"
 #include "Images/Header/DinoOllieImage.h"
 #include "Images/Header/BirdImage.h"
+#include "Audio/AudioManager.h"
+#include "Audio/Sounds.h"
+
 
 Player::Player(int _floorLevel)
 {
@@ -40,6 +43,7 @@ bool Player::Update(float _deltaTime) noexcept
         {
             if (M5Cardputer.BtnA.wasPressed())
             {
+                AudioManager::Get()->PlayVoice(ZundaOh, sizeof(ZundaOh));
                 m_rigidbody->AddImpulse(0, 120);
                 isHolding = true; 
                 holdTime = 0.0f;
@@ -52,6 +56,7 @@ bool Player::Update(float _deltaTime) noexcept
             }
             if (M5Cardputer.BtnA.wasReleased())
             {
+                AudioManager::Get()->PlayVoice(ZundaOk, sizeof(ZundaOk));
                 holdTime = 0.0f;
                 isHolding = false;
                 m_rigidbody->ResetAcceleration();

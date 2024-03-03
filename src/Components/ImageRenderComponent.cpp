@@ -27,6 +27,8 @@ void ImageRenderComponent::Render() noexcept
     posY = ImageRenderComponent::s_ScreenHeight - posY;
 
     M5Cardputer.Display.pushImage(posX, posY,  m_imageWidth, m_imageHeight, m_data);
+
+    return;
     M5Cardputer.Display.drawCircle(m_owner->GetPosX(), ImageRenderComponent::s_ScreenHeight - m_owner->GetPosY(), 5, RED);
 }
 

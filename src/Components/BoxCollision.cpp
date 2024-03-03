@@ -35,6 +35,8 @@ void BoxCollision::Update(float _deltaTime) noexcept
 
 void BoxCollision::Render() noexcept
 {
+    return;
+    
     float posX = m_owner->GetPosX();
     float posY = m_owner->GetPosY() - m_minY + (m_maxY - m_minY);
 

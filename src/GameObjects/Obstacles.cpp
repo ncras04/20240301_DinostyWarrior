@@ -21,5 +21,5 @@ bool Obstacle::Update(float _deltaTime) noexcept
     SetPosX(posX);
     AGameObject::Update(_deltaTime);
 
-    return posX > 30;
+    return true;
 }

@@ -13,6 +13,11 @@ class Ground : public AGameObject
     public:
         virtual bool Update(float _deltaTime) noexcept override;
         virtual void Render() noexcept override;
+
+        int GetLastPositionX();
+        int GetLastPositionY();
+
+        inline int GetScrollSpeed() const noexcept { return m_scrollSpeed; }
     protected:
         float GenerateNextPoint(float _previousHeight);
 

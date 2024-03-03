@@ -61,5 +61,18 @@ void Game::Run()
             currentFrame = millis();
         }
     }
+    static float lastCheckTime = 0;
+    static float temperature = temperatureRead();
+    lastCheckTime += deltaSeconds * temperature / 25.0f;
+
+    if (lastCheckTime > 1.0f)
+    {
+        temperature = temperatureRead();
+        // M5Cardputer.Speaker.tone(temperature * 100, 250, 7, true);
+
+        lastCheckTime -= 1.0f;
+    }
+    M5Cardputer.Display.setCursor(0,10, 2);
+    M5Cardputer.Display.print("celzija: " + String(temperature));
     lastFrame = currentFrame;
 }

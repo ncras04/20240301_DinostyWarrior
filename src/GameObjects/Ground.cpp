@@ -70,3 +70,14 @@ float Ground::GenerateNextPoint(float _previous)
 
     return value;
 }
+
+int Ground::GetLastPositionX()
+{
+    int lastIndex = m_points.size() - 1;
+    return m_currentLocation + lastIndex * m_spacePerPoint;
+}
+
+int Ground::GetLastPositionY()
+{
+    return m_points.back();
+}

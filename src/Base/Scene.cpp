@@ -38,8 +38,8 @@ std::string Scene::Update(float _deltaTime) noexcept
             if (m_objects[i]->m_Collider->Intersect(m_objects[j]->m_Collider))
             {
                 M5.Speaker.tone(261.626, 1000, 1);
-                if (m_objects[i]->m_Collider->GetTag() == "Player"
-                    || m_objects[j]->m_Collider->GetTag() == "Player")
+                if (m_objects[i]->GetTag() == "Player"
+                    || m_objects[j]->GetTag() == "Player")
                     {
                         // Game over
                         returnValue = "GameOver";
@@ -50,12 +50,7 @@ std::string Scene::Update(float _deltaTime) noexcept
 
     for (AGameObject* go : toRemove)
     {
-        std::vector<AGameObject*>::iterator position = std::find(m_objects.begin(), m_objects.end(), go);
-        if (position != m_objects.end()) 
-        {
-            m_objects.erase(position);
-        }
-        delete go;
+        DeleteGameObject(go);
     }
     
     for (AGameObject* go : m_objects)
@@ -64,4 +59,34 @@ std::string Scene::Update(float _deltaTime) noexcept
     }
 
     return returnValue;
+}
+
+void Scene::AddGameObject(AGameObject* _go) noexcept
+{
+    if (nullptr == _go)
+        return;
+    m_objects.push_back(_go);
+}
+
+void Scene::RemoveGameObject(AGameObject* _go) noexcept
+{
+    if (nullptr == _go)
+        return;
+    std::vector<AGameObject*>::iterator position = std::find(m_objects.begin(), m_objects.end(), _go);
+    if (position != m_objects.end()) 
+    {
+        m_objects.erase(position);
+    }
+}
+
+void Scene::DeleteGameObject(AGameObject* _go) noexcept
+{
+    if (nullptr == _go)
+        return;
+    std::vector<AGameObject*>::iterator position = std::find(m_objects.begin(), m_objects.end(), _go);
+    if (position != m_objects.end()) 
+    {
+        m_objects.erase(position);
+    }
+    delete _go;
 }

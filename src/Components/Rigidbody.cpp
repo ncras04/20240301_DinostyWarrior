@@ -3,7 +3,7 @@
 #include "Rigidbody.h"
 #include "GameObjects/GameObject.h"
 
-float Rigidbody::s_gravity = 40.0f;
+float Rigidbody::s_gravity = 100.0f;
 
 Rigidbody::Rigidbody(AGameObject* _owner) : AComponent(_owner)
 {

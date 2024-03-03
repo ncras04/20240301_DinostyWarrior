@@ -40,7 +40,7 @@ bool Player::Update(float _deltaTime) noexcept
         {
             if (M5Cardputer.BtnA.wasPressed())
             {
-                m_rigidbody->AddImpulse(0, 70);
+                m_rigidbody->AddImpulse(0, 120);
                 isHolding = true; 
                 holdTime = 0.0f;
                 m_renderer->SetData(dinoOllieImage);
@@ -48,7 +48,7 @@ bool Player::Update(float _deltaTime) noexcept
             if (M5Cardputer.BtnA.isHolding())
             {
                 holdTime += _deltaTime;
-                m_rigidbody->AddForce(0, 70 * _deltaTime);   
+                m_rigidbody->AddForce(0, 100 * _deltaTime);   
             }
             if (M5Cardputer.BtnA.wasReleased())
             {

@@ -39,7 +39,10 @@ void Game::Setup()
     ImageRenderComponent::s_ScreenWidth = M5Cardputer.Display.width();
     ImageRenderComponent::s_ScreenHeight = M5Cardputer.Display.height();
 
-
+    
+    AudioManager::Get()->PlayQueuedVoice(ZundaHallo, sizeof(ZundaHallo));
+    AudioManager::Get()->PlayQueuedVoice(ZundaLassUnsSpielen, sizeof(ZundaLassUnsSpielen));
+    AudioManager::Get()->PlayQueuedVoice(ZundaLosGehts, sizeof(ZundaLosGehts));
     m_activeScene = new MainScene();
 }
 

@@ -15,11 +15,11 @@ bool Score::Update(float _deltaTime)
     m_currentScore += m_scoreChangePerSecond * _deltaTime;
 
 
-    if((int)m_currentScore % 10 == 0 && m_currentScore != 0)
+    if((int)m_currentScore % 10 == 0 && (int)m_currentScore != 0)
     {
         int tmp{};
         tmp = (int)m_currentScore % 20 == 0 ? 0 : 1;
-        AudioManager::Get()->PlayVoice(ZundaWaku, sizeof(ZundaWaku));
+        AudioManager::Get()->PlayVoice(ZundaOkay, sizeof(ZundaOkay));
     }
     M5Cardputer.Display.setTextColor(BLACK);
     M5Cardputer.Display.setCursor(160,10, 2);

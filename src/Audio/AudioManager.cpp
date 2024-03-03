@@ -21,6 +21,8 @@ void AudioManager::Init()
     M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::EFFECTS, 255);
     M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::EFFECT2, 255);
     M5Cardputer.Speaker.setChannelVolume((uint8_t)ESoundChannels::MUSIC, 255);
+    M5Cardputer.Speaker.setChannelVolume(7, 120);
+
 }
 
 void AudioManager::Update()

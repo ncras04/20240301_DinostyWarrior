@@ -86,7 +86,9 @@ void Game::Run()
     if (lastCheckTime > 1.0f)
     {
         temperature = temperatureRead();
-        //M5Cardputer.Speaker.tone(temperature * 100, 250, 7, true);
+        
+        if(temperature > 35)
+            M5Cardputer.Speaker.tone(temperature * 100, 250, 7, true);
 
         lastCheckTime -= 1.0f;
     }

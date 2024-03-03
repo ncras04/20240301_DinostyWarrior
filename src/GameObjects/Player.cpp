@@ -43,7 +43,7 @@ bool Player::Update(float _deltaTime) noexcept
         {
             if (M5Cardputer.BtnA.wasPressed())
             {
-                AudioManager::Get()->PlayVoice(ZundaLosGehts, sizeof(ZundaLosGehts));
+                AudioManager::Get()->PlayQueuedVoice(ZundaLosGehts, sizeof(ZundaLosGehts));
                 m_rigidbody->AddImpulse(0, 120);
                 isHolding = true; 
                 holdTime = 0.0f;

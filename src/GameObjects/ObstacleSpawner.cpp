@@ -112,7 +112,6 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
         if (obstacle->GetTag() != "Cat")
         {
             m_inactiveObstacles.push_back(obstacle);
-            AudioManager::Get()->PlayVoice(ZundaScheissKatze, sizeof(ZundaScheissKatze));
         }
 
         std::vector<Obstacle *>::iterator obstaclePosition = std::find(m_activeObstacles.begin(), m_activeObstacles.end(), obstacle);

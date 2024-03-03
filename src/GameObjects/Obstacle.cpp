@@ -23,3 +23,8 @@ bool Obstacle::Update(float _deltaTime) noexcept
 
     return true;
 }
+
+void Obstacle::SetMovementSpeed(int _movementSpeed) noexcept
+{
+    m_movementSpeed = _movementSpeed;
+}

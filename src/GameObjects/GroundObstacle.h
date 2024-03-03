@@ -8,6 +8,6 @@
 class GroundObstacle : public Obstacle
 {
     public:
-        GroundObstacle(int _movementSpeed) : Obstacle(_movementSpeed, "Ground", 29, 32, trashImage) {}
+        GroundObstacle(int _movementSpeed) : Obstacle(_movementSpeed, "Ground", 29, 25, trashImage) {}
 };
 #endif // LIBRARY_GROUNDOBSTACLE_H

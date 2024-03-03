@@ -13,6 +13,7 @@ BoxCollision::BoxCollision(AGameObject* _owner, int _minX, int _minY, int _maxX,
 
 bool BoxCollision::Intersect(const BoxCollision* _other) const noexcept
 {
+    return false;
     float posX = m_owner->GetPosX();
     float posY = m_owner->GetPosY();
 

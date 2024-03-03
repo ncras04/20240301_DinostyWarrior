@@ -5,7 +5,7 @@
 #include "GameObjects/Ground.h"
 #include "GameObjects/Obstacle.h"
 #include "GameObjects/Score.h"
-#include "GameObjects/GroundSpawner.h"
+#include "GameObjects/ObstacleSpawner.h"
 
 MainScene::MainScene()
 {
@@ -15,7 +15,7 @@ MainScene::MainScene()
     Ground* ground = new Ground(50, 20);
     ground->SetPosY(20);
     m_objects.push_back(ground);
-    m_objects.push_back(new GroundSpawner(2, 5, ground, 3));
+    m_objects.push_back(new ObstacleSpawner(2, 5, ground, 2));
     m_objects.push_back(new Score(1.0f));
     AudioManager::Get()->PlayOneshot(testbossintro, sizeof(testbossintro), ESoundTypes::AMBIENT);
     AudioManager::Get()->PlayRepeatOneshot(testboss, sizeof(testboss), ESoundTypes::AMBIENT);

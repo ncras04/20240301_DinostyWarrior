@@ -19,9 +19,10 @@ class ImageRenderComponent : public AComponent
         static int s_ScreenWidth;
         static int s_ScreenHeight;
 
+    protected:
+        const unsigned short* m_data = nullptr;
     private:
         int m_imageWidth = 0;
         int m_imageHeight = 0;
-        const unsigned short* m_data = nullptr;
 };
 #endif // LIBRARY_IMAGERENDERCOMPONENT_H

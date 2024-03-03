@@ -3,13 +3,12 @@
 #include "M5Cardputer.h"
 #include "ImageRenderComponent.h"
 
-BoxCollision::BoxCollision(AGameObject* _owner, std::string _tag, int _minX, int _minY, int _maxX, int _maxY) : AComponent(_owner)
+BoxCollision::BoxCollision(AGameObject* _owner, int _minX, int _minY, int _maxX, int _maxY) : AComponent(_owner)
 {
     m_minX = _minX;
     m_minY = _minY;
     m_maxX = _maxX;
     m_maxY = _maxY;
-    m_tag = _tag;
 } 
 
 bool BoxCollision::Intersect(const BoxCollision* _other) const noexcept

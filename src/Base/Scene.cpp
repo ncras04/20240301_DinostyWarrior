@@ -38,8 +38,8 @@ std::string Scene::Update(float _deltaTime) noexcept
             if (m_objects[i]->m_Collider->Intersect(m_objects[j]->m_Collider))
             {
                 M5.Speaker.tone(261.626, 1000, 1);
-                if (m_objects[i]->m_Collider->GetTag() == "Player"
-                    || m_objects[j]->m_Collider->GetTag() == "Player")
+                if (m_objects[i]->GetTag() == "Player"
+                    || m_objects[j]->GetTag() == "Player")
                     {
                         // Game over
                         returnValue = "GameOver";

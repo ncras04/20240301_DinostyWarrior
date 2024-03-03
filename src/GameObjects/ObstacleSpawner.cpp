@@ -7,6 +7,7 @@
 #include "GroundObstacle.h"
 #include "AirObstacle.h"
 #include "CatObstacle.h"
+#include "BallonObstacle.h"
 
 #include <list>
 ObstacleSpawner::ObstacleSpawner(int _minSpawnDelay, int _maxSpawnDelay, Ground* _ground, int _obstaclePool)
@@ -21,6 +22,11 @@ ObstacleSpawner::ObstacleSpawner(int _minSpawnDelay, int _maxSpawnDelay, Ground*
     for (int i = 0; i < _obstaclePool; i++)
     {
         obstacle = new AirObstacle(20);
+        m_inactiveObstacles.push_back(obstacle);
+    }
+    for (int i = 0; i < _obstaclePool; i++)
+    {
+        obstacle = new BallonObstacle(20);
         m_inactiveObstacles.push_back(obstacle);
     }
     m_catObstacle = new CatObstacle(20);

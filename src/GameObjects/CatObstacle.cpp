@@ -1,6 +1,6 @@
 #include "CatObstacle.h"
 #include "Components/AnimationRenderComponent.h"
-#include "Images/CatImage.h"
+#include "Images/Header/CatImage.h"
 
 CatObstacle::CatObstacle(int _movementSpeed)
 {

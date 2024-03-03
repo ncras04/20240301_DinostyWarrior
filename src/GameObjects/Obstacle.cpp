@@ -1,7 +1,7 @@
 #include "Obstacle.h"
 
 #include "Components/ImageRenderComponent.h"
-#include "Images/TrashImage.h"
+#include "Images/Header/TrashImage.h"
 
 Obstacle::Obstacle(int _movementSpeed, std::string _tag, int _imageWidth, int _imageHeight, const unsigned short* _data)
 {

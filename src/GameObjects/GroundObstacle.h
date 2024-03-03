@@ -3,7 +3,7 @@
 
 #include "M5Cardputer.h"
 #include "Obstacle.h"
-#include "Images/TrashImage.h"
+#include "Images/Header/TrashImage.h"
 
 class GroundObstacle : public Obstacle
 {

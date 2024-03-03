@@ -2,32 +2,43 @@
 
 #include "Ground.h"
 #include "Components/ImageRenderComponent.h"
+#include "Images/Header/GroundImage.h"
 
 Ground::Ground(int _scrollSpeed, int _spacePerPoint)
 {
     m_scrollSpeed = _scrollSpeed;
     m_spacePerPoint = _spacePerPoint;
 
-    int neededPoints = (M5Cardputer.Display.width() / m_spacePerPoint) + 2;
+    // int neededPoints = (M5Cardputer.Display.width() / m_spacePerPoint) + 2;
+// 
+    // float previous = 0;
+    // for (int i = 0; i < neededPoints; i++)
+    // {
+    //     previous = GenerateNextPoint(previous);
+    //     m_points.push_back(previous);
+    // }
 
-    float previous = 0;
-    for (int i = 0; i < neededPoints; i++)
-    {
-        previous = GenerateNextPoint(previous);
-        m_points.push_back(previous);
-    }
+    m_components.push_back(new ImageRenderComponent(this, 240, 32, groundImage));
 }
 
 bool Ground::Update(float _deltaTime) noexcept
 {
-    m_currentLocation -= m_scrollSpeed * _deltaTime;
-    if (m_currentLocation < -2 * m_spacePerPoint)
+    // m_currentLocation -= m_scrollSpeed * _deltaTime;
+    // if (m_currentLocation < -2 * m_spacePerPoint)
+    // {
+    //     m_currentLocation += m_spacePerPoint;
+    //     m_points.pop_front();
+    //     float previous = m_points.back();
+    //     m_points.push_back(GenerateNextPoint(previous));
+    // }
+    
+    float posX = GetPosX();
+    posX -= m_scrollSpeed * _deltaTime;
+    if (posX < -250)
     {
-        m_currentLocation += m_spacePerPoint;
-        m_points.pop_front();
-        float previous = m_points.back();
-        m_points.push_back(GenerateNextPoint(previous));
+        posX = 460;
     }
+    SetPosX(posX);
 
     AGameObject::Update(_deltaTime);
     return true;
@@ -35,23 +46,23 @@ bool Ground::Update(float _deltaTime) noexcept
 
 void Ground::Render() noexcept
 {
-    int previousX = m_currentLocation;
-    int previousY = 0;
-    int index = 0;
-    for (float point : m_points)
-    {
-        index++;
-        // M5Cardputer.Display.println(String(previousX) + "|" + String(GetPosY() + previousY) + "|" + String(m_currentLocation + index * m_spacePerPoint) + "|" + String(GetPosY() + point));
-        // delay(3000);
-        float renderPosY = GetPosY() + point;
-        float previousRenderPosY = GetPosY() + previousY;
-        renderPosY = ImageRenderComponent::s_ScreenHeight - renderPosY;
-        previousRenderPosY = ImageRenderComponent::s_ScreenHeight - previousRenderPosY;
-
-        M5Cardputer.Display.drawLine(previousX, previousRenderPosY, m_currentLocation + index * m_spacePerPoint, renderPosY, BLACK);
-        previousX = m_currentLocation + index * m_spacePerPoint;
-        previousY = point;
-    }
+    // int previousX = m_currentLocation;
+    // int previousY = 0;
+    // int index = 0;
+    // for (float point : m_points)
+    // {
+    //     index++;
+    //     // M5Cardputer.Display.println(String(previousX) + "|" + String(GetPosY() + previousY) + "|" + String(m_currentLocation + index * m_spacePerPoint) + "|" + String(GetPosY() + point));
+    //     // delay(3000);
+    //     float renderPosY = GetPosY() + point;
+    //     float previousRenderPosY = GetPosY() + previousY;
+    //     renderPosY = ImageRenderComponent::s_ScreenHeight - renderPosY;
+    //     previousRenderPosY = ImageRenderComponent::s_ScreenHeight - previousRenderPosY;
+// 
+    //     M5Cardputer.Display.drawLine(previousX, previousRenderPosY, m_currentLocation + index * m_spacePerPoint, renderPosY, RED);
+    //     previousX = m_currentLocation + index * m_spacePerPoint;
+    //     previousY = point;
+    // }
     AGameObject::Render();
 }
 
@@ -73,11 +84,12 @@ float Ground::GenerateNextPoint(float _previous)
 
 int Ground::GetLastPositionX()
 {
-    int lastIndex = m_points.size() - 1;
+    int lastIndex = (M5Cardputer.Display.width() / m_spacePerPoint) + 1;
     return m_currentLocation + lastIndex * m_spacePerPoint;
 }
 
 int Ground::GetLastPositionY()
 {
-    return m_points.back();
+    return GetPosY();
+    // return m_points.back();
 }

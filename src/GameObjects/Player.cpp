@@ -3,9 +3,9 @@
 #include "Player.h"
 #include "Components/ImageRenderComponent.h"
 #include "Components/Rigidbody.h"
-#include "Images/DinoSkateImage.h"
-#include "Images/DinoOllieImage.h"
-#include "Images/BirdImage.h"
+#include "Images/Header/DinoSkateImage.h"
+#include "Images/Header/DinoOllieImage.h"
+#include "Images/Header/BirdImage.h"
 
 Player::Player(int _floorLevel)
 {

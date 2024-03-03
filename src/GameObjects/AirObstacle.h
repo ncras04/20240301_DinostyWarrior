@@ -3,7 +3,7 @@
 
 #include "M5Cardputer.h"
 #include "Obstacle.h"
-#include "Images/BirdImage.h"
+#include "Images/Header/BirdImage.h"
 
 class AirObstacle : public Obstacle
 {

@@ -8,12 +8,14 @@
 #include "AirObstacle.h"
 #include "CatObstacle.h"
 #include "BallonObstacle.h"
+#include "Audio/AudioManager.h"
+#include "Audio/Sounds.h"
 
 #include <list>
-ObstacleSpawner::ObstacleSpawner(int _minSpawnDelay, int _maxSpawnDelay, Ground* _ground, int _obstaclePool)
+ObstacleSpawner::ObstacleSpawner(int _minSpawnDelay, int _maxSpawnDelay, Ground *_ground, int _obstaclePool)
 {
     m_ground = _ground;
-    Obstacle* obstacle = nullptr;
+    Obstacle *obstacle = nullptr;
     for (int i = 0; i < _obstaclePool; i++)
     {
         obstacle = new GroundObstacle(20);
@@ -31,18 +33,18 @@ ObstacleSpawner::ObstacleSpawner(int _minSpawnDelay, int _maxSpawnDelay, Ground*
     }
     m_catObstacle = new CatObstacle(20);
 
-   m_minSpawnDelay = _minSpawnDelay;
-   m_maxSpawnDelay = _maxSpawnDelay;
+    m_minSpawnDelay = _minSpawnDelay;
+    m_maxSpawnDelay = _maxSpawnDelay;
 }
 
 ObstacleSpawner::~ObstacleSpawner()
 {
-    for (Obstacle* obstacle : m_inactiveObstacles)
+    for (Obstacle *obstacle : m_inactiveObstacles)
     {
         delete obstacle;
     }
 
-    for (Obstacle* obstacle : m_activeObstacles)
+    for (Obstacle *obstacle : m_activeObstacles)
     {
         delete obstacle;
     }
@@ -60,8 +62,10 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
         static const double fraction = 1.0 / (RAND_MAX + 1.0);
         if (m_timeUntilCat < 0)
         {
-            m_timeUntilCat =  m_minTimeBetweenCats + static_cast<int>((m_minMaxTimeBetweenCats - m_minTimeBetweenCats + 1) * (std::rand() * fraction));
-            Obstacle* obstacle = m_catObstacle;
+            M5Cardputer.Speaker.stop();
+
+            m_timeUntilCat = m_minTimeBetweenCats + static_cast<int>((m_minMaxTimeBetweenCats - m_minTimeBetweenCats + 1) * (std::rand() * fraction));
+            Obstacle *obstacle = m_catObstacle;
             if (nullptr == obstacle)
                 return "";
 
@@ -70,6 +74,10 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
             m_activeObstacles.push_back(obstacle);
 
             Game::Get()->GetActiveScene()->AddGameObject(obstacle);
+
+            AudioManager::Get()->PlaySound(SFXAlert, sizeof(SFXAlert));
+            AudioManager::Get()->PlaySound(BGMCatBossEvent, sizeof(BGMCatBossEvent));
+            // AudioManager::Get()->PlayBGMRepeat(BGMLevel, sizeof(BGMLevel));
         }
         else
         {
@@ -77,7 +85,7 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
             {
 
                 int index = rand() % m_inactiveObstacles.size();
-                Obstacle* obstacle = m_inactiveObstacles[index];
+                Obstacle *obstacle = m_inactiveObstacles[index];
                 if (nullptr == obstacle)
                     return "";
                 m_inactiveObstacles.erase(m_inactiveObstacles.begin() + index);
@@ -91,9 +99,9 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
         }
         int time = m_minSpawnDelay + static_cast<int>((m_maxSpawnDelay - m_minSpawnDelay + 1) * (std::rand() * fraction));
         m_timeSinceLastSpawn = -1 * time;
-    }   
-    std::list<Obstacle*> toRemove = std::list<Obstacle*>();
-    for (Obstacle* obstacle : m_activeObstacles)
+    }
+    std::list<Obstacle *> toRemove = std::list<Obstacle *>();
+    for (Obstacle *obstacle : m_activeObstacles)
     {
         if (obstacle->GetPosX() < -20)
         {
@@ -101,15 +109,15 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
         }
     }
 
-    for (Obstacle* obstacle : toRemove)
+    for (Obstacle *obstacle : toRemove)
     {
         if (obstacle->GetTag() != "Cat")
         {
             m_inactiveObstacles.push_back(obstacle);
         }
 
-        std::vector<Obstacle*>::iterator obstaclePosition = std::find(m_activeObstacles.begin(), m_activeObstacles.end(), obstacle);
-        if (obstaclePosition != m_activeObstacles.end()) 
+        std::vector<Obstacle *>::iterator obstaclePosition = std::find(m_activeObstacles.begin(), m_activeObstacles.end(), obstacle);
+        if (obstaclePosition != m_activeObstacles.end())
         {
             m_activeObstacles.erase(obstaclePosition);
         }
@@ -118,7 +126,7 @@ bool ObstacleSpawner::Update(float _deltaTime) noexcept
     return true;
 }
 
-void ObstacleSpawner::SetupObstacle(Obstacle* _obstacle) noexcept
+void ObstacleSpawner::SetupObstacle(Obstacle *_obstacle) noexcept
 {
     _obstacle->SetPosX(m_ground->GetLastPositionX());
 

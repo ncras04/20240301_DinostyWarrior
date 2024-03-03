@@ -17,6 +17,8 @@ class AudioManager
     public:
         void PlayBGM(const uint8_t* _data, int _length);
         void PlayVoice(const uint8_t* _data, int _length);
+        void PlayQueuedVoice(const uint8_t* _data, int _length);
+
         void PlaySound(const uint8_t* _data, int _length);
         void PlayBGMRepeat(const uint8_t* _data, int _length);
         void Update();

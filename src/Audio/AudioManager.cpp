@@ -60,6 +60,11 @@ void AudioManager::PlayVoice(const uint8_t *_data, int _length)
     M5Cardputer.Speaker.playWav(_data, _length, 1, (int)ESoundChannels::ZUNDAMON, true);
 }
 
+void AudioManager::PlayQueuedVoice(const uint8_t *_data, int _length)
+{
+    M5Cardputer.Speaker.playWav(_data, _length, 1, (int)ESoundChannels::ZUNDAMON, false);
+}
+
 void AudioManager::PlaySound(const uint8_t *_data, int _length)
 {
     auto ch = ESoundChannels::EFFECTS;

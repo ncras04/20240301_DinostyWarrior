@@ -9,10 +9,10 @@
 #include "GameObjects/Bricks.h"
 #include "GameObjects/Window.h"
 
-#define SOUNDDEBUG
 
 MainScene::MainScene()
 {
+
     Ground* ground = new Ground(50, 20);
     ground->SetPosY(-15);
     ground->SetPosX(-240);
